@@ -61,3 +61,10 @@ alter table yusheng drop column def ;
 alter table ssc_member_session add column `isRealOnLine` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否真实在线,sLogin=1并且一个小时内有过操作' after isOnline;
 ALTER TABLE ssc_member_session ADD KEY (`isRealOnLine`) USING BTREE;
 ```
+
+##### 使数据库支持emoji表情存储
+ALTER DATABASE liuyou CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+ALTER TABLE hk_chat_msg ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT='聊天信息记录表';
+ALTER TABLE hk_chat_msg MODIFY content TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+Yii2 DB配置添加
+'charset' => 'utf8mb4',
